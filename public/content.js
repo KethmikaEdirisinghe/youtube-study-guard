@@ -1,0 +1,1 @@
+console.log("YouTube Study Guard is running!");
