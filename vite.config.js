@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
@@ -12,6 +13,17 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: "index.html",
+        guard: "guard.html",
+      },
+
+      output:{
+        entryFileNames: (chunk) => {
+          if(chunk.name === "content"){
+            return "content.js";
+          }
+
+          return  "assets/[name]-[hash].js";
+        },
       },
     },
   },

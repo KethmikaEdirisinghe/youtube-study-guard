@@ -5,11 +5,19 @@
     "description": "A context-aware YouTube blocker for study sessions.",
     "permissions":[
         "tabs",
-        "storage"
+        "storage",
+        "webNavigation"
     ],
     "action":{
         "default_popup": "index.html"
     },
+
+    "web_accessible_resources": [
+    {
+        "resources": ["guard.html", "assets/*"],
+        "matches": ["https://www.youtube.com/*"]
+    }
+],
     "background":{
         "service_worker": "background.js"
     },
