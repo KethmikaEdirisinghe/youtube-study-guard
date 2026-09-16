@@ -16,18 +16,36 @@ chrome.runtime.onMessage.addListener((message) =>{
     console.log("Video URL:",message.url);
 
     }
+
+if (message.type === "ALLOW_YOUTUBE") {
+    console.log("User has a real purpose. YouTube allowed once.");
+
+    allowYouTubeOnce = true;
+}
+
 });
+
+let allowYouTubeOnce = false;
 
 function isYouTube(url) {
     return url.startsWith("https://www.youtube.com/");
 }
 
 chrome.webNavigation.onBeforeNavigate.addListener((details) => {
- if (details.frameId !== 0) {
+    if (details.frameId !== 0) {
         return;
     }
 
     if (isYouTube(details.url)) {
+
+        if (allowYouTubeOnce) {
+            console.log("YouTube allowed once.");
+
+            allowYouTubeOnce = false;
+
+            return;
+        }
+
         console.log("YouTube detected! Redirecting to Study Guard...");
 
         chrome.tabs.update(details.tabId, {
@@ -35,5 +53,4 @@ chrome.webNavigation.onBeforeNavigate.addListener((details) => {
         });
     }
 });
-
 
