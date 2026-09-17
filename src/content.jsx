@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-
+import "./index.css";
 import StudyGuard from "./study-guard/StudyGuard.jsx";
 
 console.log("YouTube Study Guard is running!");
