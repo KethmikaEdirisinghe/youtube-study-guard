@@ -67,7 +67,6 @@ function StudyGuard() {
         width: "300px",
       }}
     >
-
       {/* Step 1: Choose a reason */}
       {step === 1 && (
         <div>
@@ -90,7 +89,7 @@ function StudyGuard() {
               setStep(2);
             }}
           >
-            🔎 I have something specific in mind
+            🔎 I need to clarify something related to my studies
           </button>
 
           <button
@@ -116,29 +115,25 @@ function StudyGuard() {
             onChange={(event) => setStudyGoal(event.target.value)}
           />
 
-          <button
-            onClick={() => setStep(3)}
-          >
+          <button onClick={() => setStep(3)}>
             Continue
           </button>
         </div>
       )}
 
-      {/* Step 2: Specific thing */}
+      {/* Step 2: Study clarification */}
       {step === 2 && reason === "search" && (
         <div>
-          <p>What exactly are you looking for?</p>
+          <p>What do you need to clarify?</p>
 
           <input
             type="text"
-            placeholder="Topic, question, or video"
+            placeholder="What are you trying to understand?"
             value={searchGoal}
             onChange={(event) => setSearchGoal(event.target.value)}
           />
 
-          <button
-            onClick={() => setStep(3)}
-          >
+          <button onClick={() => setStep(3)}>
             Continue
           </button>
         </div>
@@ -150,13 +145,13 @@ function StudyGuard() {
           <p>Be honest with yourself.</p>
 
           <p>
-            Will watching YouTube actually help you with this?
+            Will watching a YouTube video help you understand this better?
           </p>
 
           <button
             onClick={() => {
               chrome.runtime.sendMessage({
-                type: "ALLOW_YOUTUBE"
+                type: "ALLOW_YOUTUBE",
               });
 
               const goal =
@@ -171,13 +166,11 @@ function StudyGuard() {
               window.location.href = youtubeSearchUrl;
             }}
           >
-            Yes, I have a real purpose
+            Yes, this will help me understand it
           </button>
 
-          <button
-            onClick={() => setStep(4)}
-          >
-            I'm probably avoiding something
+          <button onClick={() => setStep(4)}>
+            I'm probably avoiding my studies
           </button>
         </div>
       )}
@@ -241,9 +234,7 @@ function StudyGuard() {
               </p>
 
               {/* Motivational quote */}
-              <p>
-                {quote}
-              </p>
+              <p>{quote}</p>
 
               {/* Small break activities */}
               <p>🚶 Take a walk</p>
@@ -253,7 +244,8 @@ function StudyGuard() {
 
               {/* Timer */}
               <p>
-                BREAK — {minutes < 10 ? `0${minutes}` : minutes}:
+                BREAK —{" "}
+                {minutes < 10 ? `0${minutes}` : minutes}:
                 {seconds < 10 ? `0${seconds}` : seconds}
               </p>
             </>
@@ -307,18 +299,17 @@ function StudyGuard() {
             </>
           )}
 
-    <button
-        onClick={() => {
-        chrome.runtime.sendMessage({
-        type: "CLOSE_GUARD_TAB"
-        });
-    }}
-    >
-        📚 Back to Studying
-    </button>
+          <button
+            onClick={() => {
+              chrome.runtime.sendMessage({
+                type: "CLOSE_GUARD_TAB",
+              });
+            }}
+          >
+            📚 Back to Studying
+          </button>
         </div>
       )}
-
     </div>
   );
 }
