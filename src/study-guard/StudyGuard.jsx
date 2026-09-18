@@ -130,7 +130,7 @@ function StudyGuard() {
   };
 
   return (
-    <div className="fixed inset-0 z-[999999] bg-stone-900/70 backdrop-blur-md flex items-center justify-center p-4 font-sans antialiased text-stone-800 animate-fade-in overflow-hidden">
+    <div className="fixed inset-0 z-[999999] bg-stone-900 flex items-center justify-center p-4 font-sans antialiased text-stone-800 animate-fade-in overflow-hidden">
       
       {/* Animated gradient glow backdrop */}
       {/* Layer 1: Slowly orbiting conic gradient */}
