@@ -98,3 +98,7 @@ youtube-study-guard/
 - **Tailwind CSS v4** — Styling
 - **Lucide React** — Icons
 - **Chrome Extensions Manifest V3**
+
+## License
+
+MIT
